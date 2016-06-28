@@ -45,16 +45,22 @@ extension ParseClient {
     }
     
     struct JSONParameterKeys {
-        static let Where = "where"
+        static let Results = "results"
     }
     
     //MARK: JSONParameterValues
     struct JSONParameterValues {
-        static let uniqueID = "{\"uniqueKey\":\"0222554247\"}"
+
     }
     
     //MARK: JSONBodyKeys
-    struct JSONBodyKeys {
-        
+    struct JSONResponseKeys {
+        static let UniqueID = "uniqueKey"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let MapString = "mapString"
+        static let MediaURL = "mediaURL"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
     }
 }
