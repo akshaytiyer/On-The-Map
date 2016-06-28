@@ -12,22 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let unescapedString = ParseClient.JSONParameterValues.uniqueID
-        let escapedString = unescapedString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())
-        let methodParameters: [String: AnyObject!] = [
-            ParseClient.JSONParameterKeys.Where: unescapedString
-        ]
-    
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        ParseClient.sharedInstance().taskForGETMethod(ParseClient.Methods.StudentLocation, parameters: methodParameters) { (result, error) in
+        UdacityClient.sharedInstance().taskForPOSTMethod("", parameters: [:], jsonData: "") { (result, error) in
             print(result)
         }
         
-        /*ParseClient.sharedInstance().taskForPUTMethod(ParseClient.Methods.StudentLocationUnique, parameters: [:], jsonData: "") { (result, error) in
-            print(result)
-        }*/
     }
 
     override func didReceiveMemoryWarning() {

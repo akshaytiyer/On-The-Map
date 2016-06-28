@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var session = NSURLSession.sharedSession()
 
-    
+    // MARK: Shared Instance
     class func sharedInstance() -> AppDelegate {
         struct Singleton {
             static var sharedInstance = AppDelegate()

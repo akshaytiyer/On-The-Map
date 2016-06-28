@@ -16,4 +16,5 @@ extension UdacityClient {
         static let ApiHost = "www.udacity.com"
         static let ApiPath = "/api/session"
     }
+
 }
