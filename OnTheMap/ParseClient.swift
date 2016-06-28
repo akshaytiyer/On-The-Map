@@ -28,7 +28,6 @@ class ParseClient: NSObject {
         let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
-        print(request)
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             
             func sendError(error: String) {

@@ -10,13 +10,49 @@ import Foundation
 
 class UdacityClient: NSObject {
     
+    //MARK: GET
+    func taskForGETMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
+        print(request)
+        let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            func sendError(error: String) {
+                print(error)
+                let userInfo = [NSLocalizedDescriptionKey : error]
+                completionHandlerForGET(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                sendError("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                sendError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                print("No data was returned by the request!")
+                return
+            }
+            
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
+        }
+        task.resume()
+        return task
+    }
+    
     //MARK: POST
     func taskForPOSTMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = "{\"udacity\": {\"username\": \"akshay.iyer@nyu.edu\", \"password\": \"Indira!1964\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = "{\"udacity\": {\"username\": \"akshay.iyer@nyu.edu\", \"password\": \"**********\"}}".dataUsingEncoding(NSUTF8StringEncoding)
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             func sendError(error: String) {
                 print(error)

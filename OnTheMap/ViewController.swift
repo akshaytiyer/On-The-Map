@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UdacityClient.sharedInstance().taskForPOSTMethod("", parameters: [:], jsonData: "") { (result, error) in
+        UdacityClient.sharedInstance().taskForGETMethod(UdacityClient.Methods.Users, parameters: [:], jsonData: "") { (result, error) in
             print(result)
         }
         
