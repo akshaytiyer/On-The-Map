@@ -65,7 +65,6 @@ class ParseClient: NSObject {
     }
     
     //MARK: POST
-    
      func taskForPOSTMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
         request.HTTPMethod = "POST"
@@ -104,8 +103,46 @@ class ParseClient: NSObject {
         return task
     }
     
-    //MARK: Helpers
+    //MARK: PUT
+    func taskForPUTMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForPUT: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
+        request.HTTPMethod = "PUT"
+        request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
+        request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
+        request.HTTPBody = "{\"uniqueKey\": \"0222554247\", \"firstName\": \"Priyanka\", \"lastName\": \"Keswani\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            func sendError(error: String) {
+                print(error)
+                let userInfo = [NSLocalizedDescriptionKey : error]
+                completionHandlerForPUT(result: nil, error: NSError(domain: "taskForPUTMethod", code: 1, userInfo: userInfo))
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                sendError("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                sendError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request!")
+                return
+            }
+
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPUT)
+        }
+        task.resume()
+        return task
+    }
     
+    
+    //MARK: Helpers
     //Convert the Raw JSONData to a Reusable Foundation Object
     private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
         var parsedResult: AnyObject!

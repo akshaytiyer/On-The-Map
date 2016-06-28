@@ -15,7 +15,6 @@
 		5E2833391D21B723000F70B1 /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2833381D21B723000F70B1 /* OnTheMapTests.swift */; };
 		5E2833441D21B723000F70B1 /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2833431D21B723000F70B1 /* OnTheMapUITests.swift */; };
 		5E2833581D21BC4B000F70B1 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2833571D21BC4B000F70B1 /* ParseConstants.swift */; };
-		5E28335A1D21BC7E000F70B1 /* ParseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2833591D21BC7E000F70B1 /* ParseConfig.swift */; };
 		5E28335C1D21BCA5000F70B1 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E28335B1D21BCA5000F70B1 /* ParseClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,6 @@
 		5E2833431D21B723000F70B1 /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		5E2833451D21B723000F70B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E2833571D21BC4B000F70B1 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
-		5E2833591D21BC7E000F70B1 /* ParseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConfig.swift; sourceTree = "<group>"; };
 		5E28335B1D21BCA5000F70B1 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				5E2833571D21BC4B000F70B1 /* ParseConstants.swift */,
-				5E2833591D21BC7E000F70B1 /* ParseConfig.swift */,
 				5E28335B1D21BCA5000F70B1 /* ParseClient.swift */,
 			);
 			name = "Parse API";
@@ -318,7 +315,6 @@
 			files = (
 				5E2833261D21B723000F70B1 /* ViewController.swift in Sources */,
 				5E28335C1D21BCA5000F70B1 /* ParseClient.swift in Sources */,
-				5E28335A1D21BC7E000F70B1 /* ParseConfig.swift in Sources */,
 				5E2833241D21B723000F70B1 /* AppDelegate.swift in Sources */,
 				5E2833581D21BC4B000F70B1 /* ParseConstants.swift in Sources */,
 			);

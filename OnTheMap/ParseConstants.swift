@@ -34,8 +34,9 @@ extension ParseClient {
         
         //MARK: StudentLocation
         static let StudentLocation = "/StudentLocation"
+        static let StudentLocationUnique = "/StudentLocation/lu3MVZNg0P"
     }
-    
+
     //MARK: ParameterKeys
     struct ParameterKeys {
         static let Limit = "limit"
@@ -49,7 +50,7 @@ extension ParseClient {
     
     //MARK: JSONParameterValues
     struct JSONParameterValues {
-        static let uniqueID = "{\"uniqueKey\":\"02225542471\"}"
+        static let uniqueID = "{\"uniqueKey\":\"0222554247\"}"
     }
     
     //MARK: JSONBodyKeys

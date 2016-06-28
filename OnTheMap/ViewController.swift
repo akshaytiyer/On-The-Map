@@ -24,6 +24,10 @@ class ViewController: UIViewController {
         ParseClient.sharedInstance().taskForGETMethod(ParseClient.Methods.StudentLocation, parameters: methodParameters) { (result, error) in
             print(result)
         }
+        
+        /*ParseClient.sharedInstance().taskForPUTMethod(ParseClient.Methods.StudentLocationUnique, parameters: [:], jsonData: "") { (result, error) in
+            print(result)
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
