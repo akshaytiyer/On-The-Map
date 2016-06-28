@@ -16,6 +16,8 @@
 		5E2833441D21B723000F70B1 /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2833431D21B723000F70B1 /* OnTheMapUITests.swift */; };
 		5E2833581D21BC4B000F70B1 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2833571D21BC4B000F70B1 /* ParseConstants.swift */; };
 		5E28335C1D21BCA5000F70B1 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E28335B1D21BCA5000F70B1 /* ParseClient.swift */; };
+		5E2833601D220172000F70B1 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E28335F1D220172000F70B1 /* UdacityConstants.swift */; };
+		5E2833621D220191000F70B1 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2833611D220191000F70B1 /* UdacityClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		5E2833451D21B723000F70B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E2833571D21BC4B000F70B1 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		5E28335B1D21BCA5000F70B1 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		5E28335F1D220172000F70B1 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		5E2833611D220191000F70B1 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 		5E2833521D21BBBC000F70B1 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				5E28335E1D22015E000F70B1 /* Facebook API */,
+				5E28335D1D220153000F70B1 /* Udacity API */,
 				5E2833561D21BC26000F70B1 /* Parse API */,
 			);
 			name = Clients;
@@ -177,6 +183,22 @@
 				5E28335B1D21BCA5000F70B1 /* ParseClient.swift */,
 			);
 			name = "Parse API";
+			sourceTree = "<group>";
+		};
+		5E28335D1D220153000F70B1 /* Udacity API */ = {
+			isa = PBXGroup;
+			children = (
+				5E28335F1D220172000F70B1 /* UdacityConstants.swift */,
+				5E2833611D220191000F70B1 /* UdacityClient.swift */,
+			);
+			name = "Udacity API";
+			sourceTree = "<group>";
+		};
+		5E28335E1D22015E000F70B1 /* Facebook API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Facebook API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +336,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E2833261D21B723000F70B1 /* ViewController.swift in Sources */,
+				5E2833601D220172000F70B1 /* UdacityConstants.swift in Sources */,
+				5E2833621D220191000F70B1 /* UdacityClient.swift in Sources */,
 				5E28335C1D21BCA5000F70B1 /* ParseClient.swift in Sources */,
 				5E2833241D21B723000F70B1 /* AppDelegate.swift in Sources */,
 				5E2833581D21BC4B000F70B1 /* ParseConstants.swift in Sources */,

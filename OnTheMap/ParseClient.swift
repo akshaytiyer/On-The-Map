@@ -15,23 +15,21 @@ class ParseClient: NSObject {
     //MARK: Properties
     
     //Session
-    var session = NSURLSession.sharedSession()
+    //var appDelegate: AppDelegate!
     
     //MARK: Initializers
-    
     override init() {
         super.init()
     }
     
     //MARK: GET
-    
      func taskForGETMethod(method: String, parameters: [String: AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         /* 1. Build the URL, Configure the Request */
         let request = NSMutableURLRequest(URL: parseURLFromParameters(parameters, withPathExtension: method))
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
         print(request)
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             
             func sendError(error: String) {
                 print(error)
@@ -71,7 +69,7 @@ class ParseClient: NSObject {
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
         request.HTTPBody = "{\"uniqueKey\": \"02225542471\", \"firstName\": \"Akshay\", \"lastName\": \"Iyer\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             func sendError(error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]
@@ -110,7 +108,7 @@ class ParseClient: NSObject {
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
         request.HTTPBody = "{\"uniqueKey\": \"0222554247\", \"firstName\": \"Priyanka\", \"lastName\": \"Keswani\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             func sendError(error: String) {
                 print(error)
                 let userInfo = [NSLocalizedDescriptionKey : error]

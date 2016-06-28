@@ -6,16 +6,17 @@ import XCPlayground
 // this line tells the Playground to execute indefinitely
 XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 
-let urlString = "https://api.parse.com/1/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%221234%22%7D"
-let url = NSURL(string: urlString)
-let request = NSMutableURLRequest(URL: url!)
-request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+request.HTTPMethod = "POST"
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+request.HTTPBody = "{\"udacity\": {\"username\": \"akshay.iyer@nyu.edu\", \"password\": \"Indira!1964\"}}".dataUsingEncoding(NSUTF8StringEncoding)
 let session = NSURLSession.sharedSession()
 let task = session.dataTaskWithRequest(request) { data, response, error in
-    if error != nil { // Handle error
+    if error != nil { // Handle error…
         return
     }
-    print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+    let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
+    print(NSString(data: newData, encoding: NSUTF8StringEncoding))
 }
 task.resume()

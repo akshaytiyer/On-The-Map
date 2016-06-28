@@ -12,8 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var session = NSURLSession.sharedSession()
 
-
+    
+    class func sharedInstance() -> AppDelegate {
+        struct Singleton {
+            static var sharedInstance = AppDelegate()
+        }
+        return Singleton.sharedInstance
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return true
