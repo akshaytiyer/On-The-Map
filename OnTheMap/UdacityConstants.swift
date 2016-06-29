@@ -19,7 +19,18 @@ extension UdacityClient {
     
     struct Methods {
         static let Session = "/session"
-        static let Users = "/users/7960348947"
+        static let Users = "/users"
+    }
+    
+    struct JSONResponseKeys {
+        static let LastName = "last_name"
+        static let FirstName = "first_name"
+        static let UniqueKey = "key"
     }
 
+    struct JSONParameterKeys {
+        static let User = "user"
+        static let Key = "key"
+        static let Account = "account"
+    }
 }

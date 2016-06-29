@@ -48,11 +48,14 @@ class UdacityClient: NSObject {
     
     //MARK: POST
     func taskForPOSTMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
+        let username = parameters["Username"] as? String!
+        let password = parameters["Password"] as? String!
+        let request = NSMutableURLRequest(URL: udacityURLFromParameters([:], withPathExtension: method))
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = "{\"udacity\": {\"username\": \"akshay.iyer@nyu.edu\", \"password\": \"**********\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = "{\"udacity\": {\"username\": \"\(username!)\", \"password\": \"\(password!)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+        print("{\"udacity\": {\"username\": \"\(username!)\", \"password\": \"\(password!)\"}}")
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             func sendError(error: String) {
                 print(error)

@@ -13,7 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var session = NSURLSession.sharedSession()
-
+    
+    //Global Variables
+    var uniqueID: String? = nil
+    var firstName: String? = nil
+    var lastName: String? = nil
+    var objectID: String? = nil
+    
     // MARK: Shared Instance
     class func sharedInstance() -> AppDelegate {
         struct Singleton {
