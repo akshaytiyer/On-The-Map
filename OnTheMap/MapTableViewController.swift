@@ -46,4 +46,12 @@ class MapTableViewController: UITableViewController
         cell.imageView?.image = UIImage(named: "map")
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let data = parseData[indexPath.row]
+        let mediaURL = data.mediaURL
+        let app = UIApplication.sharedApplication()
+        app.openURL(NSURL(string: mediaURL)!)
+    }
+    
 }
