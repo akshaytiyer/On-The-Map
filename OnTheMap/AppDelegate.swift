@@ -13,12 +13,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var session = NSURLSession.sharedSession()
+    var parse: Parse! = Parse()
+    var udacityData: UdacityData! = UdacityData()
+    var flag: Bool? = false
+    var sessionID: String? = nil
     
     //Global Variables
-    var uniqueID: String? = nil
-    var firstName: String? = nil
-    var lastName: String? = nil
+    //var uniqueID: String? = nil
+    //var firstName: String? = nil
+    //var lastName: String? = nil
     var objectID: String? = nil
+    
     
     // MARK: Shared Instance
     class func sharedInstance() -> AppDelegate {

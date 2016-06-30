@@ -14,34 +14,41 @@ extension UdacityClient {
     
     func authenticateWithViewController(hostViewController: UIViewController, loginParameters: [String: String!] ,completionHandlerForAuth: (success: Bool, errorString: String?) -> Void) {
 
-    getUniqueID(loginParameters) { (success, uniqueID, errorString) in
+    getUniqueID(loginParameters) { (success, uniqueID, sessionID, errorString) in
         if success {
-                AppDelegate.sharedInstance().uniqueID = uniqueID
+                self.instance.udacityData.uniqueKey = uniqueID
+                self.instance.sessionID = sessionID
                 completionHandlerForAuth(success: success, errorString: nil)
             } else {
                 completionHandlerForAuth(success: success, errorString: errorString)
             }
         }
-}
+    }
     
-    private func getUniqueID(loginParameters: [String: String!],completionHandlerForUniqueID: (success: Bool, uniqueID: String!, errorString: String!) -> Void) {
+    private func getUniqueID(loginParameters: [String: String!],completionHandlerForUniqueID: (success: Bool, uniqueID: String!,sessionID: String!, errorString: String!) -> Void) {
         
         taskForPOSTMethod(UdacityClient.Methods.Session, parameters: loginParameters, jsonData: "") { (result, error) in
             if let error = error {
-                completionHandlerForUniqueID(success: false, uniqueID: nil, errorString: "Did not fetch data correctly \(error)")
+                completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error)")
             } else {
-                print(result)
                 guard let account = result[UdacityClient.JSONParameterKeys.Account] as? [String: AnyObject!],
                 let results = account[UdacityClient.JSONParameterKeys.Key] as? String else {
-                   completionHandlerForUniqueID(success: false, uniqueID: nil, errorString: "Did not fetch data correctly \(error)")
+                   completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error)")
                     return
                 }
-                completionHandlerForUniqueID(success: true, uniqueID: results, errorString: nil)
+                
+                guard let session = result[UdacityClient.JSONParameterKeys.Session] as? [String: AnyObject!],
+                    let id = session[UdacityClient.JSONParameterKeys.SessionID] as? String else {
+                        completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error)")
+                        return
+                }
+                
+                completionHandlerForUniqueID(success: true, uniqueID: results, sessionID: id, errorString: nil)
             }
         }
     }
     
-    private func getUdacityUserData(uniqueID: String!, completionHandlerForUserData: (success: Bool, result: [UdacityData]?, errorString: String!) -> Void) {
+    func getUdacityUserData(uniqueID: String!, completionHandlerForUserData: (success: Bool, result: [String: AnyObject!]!, errorString: String!) -> Void) {
         let uniqueKeyMethod = "\(UdacityClient.Methods.Users)/\(uniqueID)"
         taskForGETMethod(uniqueKeyMethod, parameters: [:], jsonData: "") { (result, error) in
             if let error = error {
@@ -49,10 +56,25 @@ extension UdacityClient {
             }
             else
             {
-                
+                guard let userData = result[UdacityClient.JSONParameterKeys.User] as? [String: AnyObject!] else {
+                    completionHandlerForUserData(success: false, result: nil, errorString: "Did not fetch data correctly \(error)")
+                    return
+                }
+                completionHandlerForUserData(success: true, result: userData, errorString: nil)
             }
         }
-        
-        
+   
+    }
+    
+    func deleteUdacityUserData(completionHandlerForUserData: (success: Bool, errorString: String!) -> Void) {
+        taskForDELETEMethod(UdacityClient.Methods.Session, parameters: [:], jsonData: "") { (result, error) in
+            if let error = error {
+                completionHandlerForUserData(success: false, errorString: "Did not fetch data correctly \(error)")
+            }
+            else
+            {
+                completionHandlerForUserData(success: true, errorString: nil)
+            }
+        }
     }
 }

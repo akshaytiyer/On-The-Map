@@ -7,7 +7,7 @@
 //
 
 struct UdacityData {
-    let uniqueKey: String!
-    let firstName: String!
-    let lastName: String!
+    var uniqueKey: String!
+    var firstName: String!
+    var lastName: String!
 }

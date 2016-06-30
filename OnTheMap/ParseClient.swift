@@ -12,11 +12,6 @@ import Foundation
 
 class ParseClient: NSObject {
     
-    //MARK: Properties
-    
-    //Session
-    //var appDelegate: AppDelegate!
-    
     //MARK: Initializers
     override init() {
         super.init()
@@ -67,7 +62,7 @@ class ParseClient: NSObject {
         request.HTTPMethod = "POST"
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
-        request.HTTPBody = "{\"uniqueKey\": \"02225542471\", \"firstName\": \"Akshay\", \"lastName\": \"Iyer\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = jsonData.dataUsingEncoding(NSUTF8StringEncoding)
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             func sendError(error: String) {
                 print(error)
@@ -106,7 +101,7 @@ class ParseClient: NSObject {
         request.HTTPMethod = "PUT"
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
-        request.HTTPBody = "{\"uniqueKey\": \"0222554247\", \"firstName\": \"Priyanka\", \"lastName\": \"Keswani\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = jsonData.dataUsingEncoding(NSUTF8StringEncoding)
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             func sendError(error: String) {
                 print(error)

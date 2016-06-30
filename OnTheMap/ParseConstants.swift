@@ -48,11 +48,6 @@ extension ParseClient {
         static let Results = "results"
     }
     
-    //MARK: JSONParameterValues
-    struct JSONParameterValues {
-
-    }
-    
     //MARK: JSONBodyKeys
     struct JSONResponseKeys {
         static let UniqueID = "uniqueKey"
@@ -62,5 +57,6 @@ extension ParseClient {
         static let MediaURL = "mediaURL"
         static let Latitude = "latitude"
         static let Longitude = "longitude"
+        static let ObjectID = "objectId"
     }
 }

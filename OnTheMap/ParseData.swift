@@ -8,8 +8,6 @@
 
 struct ParseData {
     
-    /* {\"uniqueKey\": \"0222554247\", \"firstName\": \"Priyanka\", \"lastName\": \"Keswani\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851} */
-    
     //MARK: Properties
     
     let uniqueKey: String!
@@ -19,7 +17,8 @@ struct ParseData {
     let mediaURL: String!
     let latitude: Double!
     let longitude: Double!
-
+    let objectID: String!
+    
     //MARK: Initializers
     
     // Construct a data from a Dictionary
@@ -31,6 +30,7 @@ struct ParseData {
         mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
         latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Double
         longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
+        objectID = dictionary[ParseClient.JSONResponseKeys.ObjectID] as! String
     }
     
     static func parseDataFromResults(results: [[String: AnyObject]]) -> [ParseData]
@@ -38,8 +38,24 @@ struct ParseData {
         var parse = [ParseData]()
         for result in results {
             parse.append(ParseData(dictionary: result))
+            let uniqueID = result[ParseClient.JSONResponseKeys.UniqueID] as? String
+            let objectID = result[ParseClient.JSONResponseKeys.ObjectID] as? String
+            if uniqueID! == AppDelegate.sharedInstance().udacityData.uniqueKey
+            {
+                AppDelegate.sharedInstance().flag = true
+                AppDelegate.sharedInstance().parse.objectID = objectID
+            }
         }
         
         return parse
     }
 }
+
+// MARK: - TMDBMovie: Equatable
+
+extension ParseData: Equatable {}
+
+func ==(lhs: ParseData, rhs: ParseData) -> Bool {
+    return lhs.uniqueKey == rhs.uniqueKey
+}
+

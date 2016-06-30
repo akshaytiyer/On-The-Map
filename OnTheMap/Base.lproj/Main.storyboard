@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="-923" y="264"/>
         </scene>
-        <!--Login View Controller-->
+        <!--LoginViewController-->
         <scene sceneID="KjY-tF-d4W">
             <objects>
-                <viewController id="4AR-Xo-EzW" customClass="LoginViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="LoginViewController" id="4AR-Xo-EzW" customClass="LoginViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bcy-HF-ny2"/>
                         <viewControllerLayoutGuide type="bottom" id="dRH-OE-aDs"/>
@@ -142,13 +142,94 @@
             </objects>
             <point key="canvasLocation" x="-1311" y="264"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MapLocationViewController-->
+        <scene sceneID="mju-qE-YS0">
+            <objects>
+                <viewController storyboardIdentifier="MapLocationViewController" title="MapLocationViewController" id="aZ7-K1-32w" customClass="MapLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jfM-wF-2il"/>
+                        <viewControllerLayoutGuide type="bottom" id="uql-cd-FZo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7XE-a8-UwB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PoA-Dn-p3I">
+                                <rect key="frame" x="112" y="169" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNP-A7-n5B">
+                                <rect key="frame" x="137" y="231" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="getLocation:" destination="aZ7-K1-32w" eventType="touchUpInside" id="V6d-lS-yTv"/>
+                                    <segue destination="FfD-bO-tsD" kind="show" id="0Fn-Hf-pNC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mapLocation" destination="PoA-Dn-p3I" id="ABm-Oq-hFI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMo-7k-8NF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-210" y="-421"/>
+        </scene>
+        <!--Map Media URL Controller-->
+        <scene sceneID="n7A-BH-cy1">
+            <objects>
+                <viewController id="FfD-bO-tsD" customClass="MapMediaURLController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xwh-f9-0ND"/>
+                        <viewControllerLayoutGuide type="bottom" id="D7s-s9-gJW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ewf-3R-Na7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uaf-Sx-gid">
+                                <rect key="frame" x="112" y="172" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6K2-Xx-vtc">
+                                <rect key="frame" x="131" y="243" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="updateParseData:" destination="FfD-bO-tsD" eventType="touchUpInside" id="K1h-Me-h0j"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mediaURLTextField" destination="uaf-Sx-gid" id="NWt-Ej-6rk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="COh-6o-Z9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="294" y="-421"/>
+        </scene>
+        <!--Map Tab Bar Controller-->
         <scene sceneID="sja-Fp-K0h">
             <objects>
-                <tabBarController id="LW8-hr-XjZ" sceneMemberID="viewController">
+                <tabBarController id="LW8-hr-XjZ" customClass="MapTabBarController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="e5e-Et-QaV">
-                        <barButtonItem key="leftBarButtonItem" image="pin" id="RAs-pX-R9P"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4Jj-SU-cQR"/>
+                        <barButtonItem key="leftBarButtonItem" image="pin" id="RAs-pX-R9P">
+                            <connections>
+                                <action selector="updateUdacityUserLocation:" destination="LW8-hr-XjZ" id="SEB-AA-h1s"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4Jj-SU-cQR">
+                            <connections>
+                                <action selector="logoutButton:" destination="LW8-hr-XjZ" id="mfT-eh-bJp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="2oO-xj-s2K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

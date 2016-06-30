@@ -11,6 +11,8 @@ import UIKit
 class LoginViewController: UIViewController
 {
     
+    let instance = AppDelegate.sharedInstance()
+    
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBAction func loginPressed(sender: AnyObject) {
@@ -22,13 +24,41 @@ class LoginViewController: UIViewController
             let loginParameter: [String: String!] =
                 ["Username": usernameTextField.text,
                  "Password": passwordTextField.text]
-            UdacityClient.sharedInstance().authenticateWithViewController(self,loginParameters: loginParameter,completionHandlerForAuth: { (success, errorString) in
-                self.completeLogin()
+                UdacityClient.sharedInstance().authenticateWithViewController(self,loginParameters: loginParameter,completionHandlerForAuth: { (success, errorString) in
+                if success {
+                    self.completeLogin()
+                }
+                else
+                {
+                    self.invalidLogin()
+                }
+                
             })
         }
     }
     
+    private func invalidLogin() {
+        performUIUpdatesOnMain {
+            let alertController = UIAlertController(title: "Invalid Login", message: "Please Enter Your Correct Login Details", preferredStyle: .Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                self.setUIEnabled(true)
+                self.usernameTextField.text = ""
+                self.passwordTextField.text = ""
+                alertController.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
     private func completeLogin() {
+        UdacityClient.sharedInstance().getUdacityUserData(self.instance.udacityData.uniqueKey) { (success, result, errorString) in
+            if success
+            {
+                self.instance.udacityData.firstName = result[UdacityClient.JSONResponseKeys.FirstName] as? String
+                self.instance.udacityData.lastName = result[UdacityClient.JSONResponseKeys.LastName] as? String
+            }
+        }
         performUIUpdatesOnMain {
             self.setUIEnabled(true)
             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("NavigationController") as! UINavigationController
