@@ -60,3 +60,5 @@ func ==(lhs: ParseData, rhs: ParseData) -> Bool {
     return lhs.uniqueKey == rhs.uniqueKey
 }
 
+
+

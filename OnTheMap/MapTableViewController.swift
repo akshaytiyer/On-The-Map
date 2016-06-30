@@ -11,14 +11,10 @@ import UIKit
 class MapTableViewController: UITableViewController
 {
     //MARK: Properties
-    var parseData = AppDelegate.sharedInstance().parseData
+    var parseData = ParseClient.sharedInstance().parseData
     
     //MARK: Outlets
     @IBOutlet var parseTableView: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,7 +26,7 @@ class MapTableViewController: UITableViewController
             })
             }
             else {
-                print(error)
+                self.dismissApp()
             }
         }
     }
@@ -52,7 +48,46 @@ class MapTableViewController: UITableViewController
         let data = parseData[indexPath.row]
         let mediaURL = data.mediaURL
         let app = UIApplication.sharedApplication()
+        if NSURL(string: mediaURL) == nil {
+            self.errorAlertBox()
+        }
+        else
+        {
         app.openURL(NSURL(string: mediaURL)!)
+        }
+    }
+    
+    private func errorAlertBox()
+    {
+        let alertController = UIAlertController(title: "Error", message: "No URL Available", preferredStyle: .Alert)
+        let CancelAction = UIAlertAction(title: "Return", style: .Default) { (action) in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alertController.addAction(CancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    //Logout
+    private func dismissApp()
+    {
+        let alertController = UIAlertController(title: "Error", message: "Unexpected Server Side Error Encountered", preferredStyle: .Alert)
+        let CancelAction = UIAlertAction(title: "Logout", style: .Default) { (action) in
+            UdacityClient.sharedInstance().deleteUdacityUserData { (success, errorString) in
+                if success {
+                    self.completeLogout()
+                }
+            }
+        }
+        alertController.addAction(CancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: Login Button
+    private func completeLogout() {
+        performUIUpdatesOnMain {
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            self.presentViewController(controller, animated: false, completion: nil)
+        }
     }
     
 }

@@ -12,7 +12,7 @@ import MapKit
 class MapMapViewController: UIViewController, MKMapViewDelegate
 {
     //MARK: Properties
-    var parseData = AppDelegate.sharedInstance().parseData
+    var parseData = ParseClient.sharedInstance().parseData
     var annotations = [MKPointAnnotation]()
     
     //MARK: Methods
@@ -41,7 +41,7 @@ class MapMapViewController: UIViewController, MKMapViewDelegate
                 })
             }
             else {
-                print(error)
+                self.dismissApp()
             }
         }
     }
@@ -68,9 +68,44 @@ class MapMapViewController: UIViewController, MKMapViewDelegate
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
-            if let toOpen = view.annotation?.subtitle! {
+            if let toOpen = view.annotation?.subtitle! {errorAlertBox()
+                if toOpen == "" {
+                    self.errorAlertBox()
+                }
                 app.openURL(NSURL(string: toOpen)!)
             }
+        }
+    }
+
+    private func errorAlertBox()
+    {
+        let alertController = UIAlertController(title: "Error", message: "No URL Available", preferredStyle: .Alert)
+        let CancelAction = UIAlertAction(title: "Return", style: .Default) { (action) in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alertController.addAction(CancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    private func dismissApp()
+    {
+        let alertController = UIAlertController(title: "Error", message: "Unexpected Server Side Error Encountered", preferredStyle: .Alert)
+        let CancelAction = UIAlertAction(title: "Logout", style: .Default) { (action) in
+            UdacityClient.sharedInstance().deleteUdacityUserData { (success, errorString) in
+                if success {
+                    self.completeLogout()
+                }
+            }
+        }
+        alertController.addAction(CancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    //MARK: Login Button
+    private func completeLogout() {
+        performUIUpdatesOnMain {
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            self.presentViewController(controller, animated: false, completion: nil)
         }
     }
 
