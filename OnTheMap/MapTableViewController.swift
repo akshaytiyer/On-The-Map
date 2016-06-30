@@ -11,7 +11,7 @@ import UIKit
 class MapTableViewController: UITableViewController
 {
     //MARK: Properties
-    var parseData: [ParseData] = [ParseData]()
+    var parseData = AppDelegate.sharedInstance().parseData
     
     //MARK: Outlets
     @IBOutlet var parseTableView: UITableView!

@@ -12,7 +12,7 @@ import MapKit
 class MapMapViewController: UIViewController, MKMapViewDelegate
 {
     //MARK: Properties
-    var parseData: [ParseData] = [ParseData]()
+    var parseData = AppDelegate.sharedInstance().parseData
     var annotations = [MKPointAnnotation]()
     
     //MARK: Methods

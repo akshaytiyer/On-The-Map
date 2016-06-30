@@ -45,7 +45,7 @@ class MapMediaURLController: UIViewController, MKMapViewDelegate, UITextFieldDel
                        self.returnToHome()
                     }
                     else {
-                        print(error)
+                        self.cancelAlertBox()
                     }
                 })
             }
@@ -98,9 +98,25 @@ class MapMediaURLController: UIViewController, MKMapViewDelegate, UITextFieldDel
         }
     }
     
+    //MARK: Cancel Function
+    private func cancelAlertBox()
+    {
+        let alertController = UIAlertController(title: "Error", message: "Could not find location", preferredStyle: .Alert)
+        let CancelAction = UIAlertAction(title: "Return", style: .Default) { (action) in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alertController.addAction(CancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
     //UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    @IBAction func backButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

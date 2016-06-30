@@ -28,6 +28,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         userDidTapView(self)
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
             print("Username or Password Empty.")
+            self.invalidLogin("Please Enter Username And Password")
         } else {
             setUIEnabled(false)
             let loginParameter: [String: String!] =
@@ -39,7 +40,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                 }
                 else
                 {
-                    self.invalidLogin()
+                    self.invalidLogin(errorString)
                 }
                 
             })
@@ -47,9 +48,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     }
     
     //MARK: Login invalid alert box
-    private func invalidLogin() {
+    private func invalidLogin(errorString: String!) {
         performUIUpdatesOnMain {
-            let alertController = UIAlertController(title: "Invalid Login", message: "Please Enter Your Correct Login Details", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Invalid Login", message: errorString, preferredStyle: .Alert)
             let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
                 self.setUIEnabled(true)
                 self.usernameTextField.text = ""

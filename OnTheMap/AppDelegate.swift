@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var session = NSURLSession.sharedSession()
     var parse: Parse! = Parse()
     var udacityData: UdacityData! = UdacityData()
+    var parseData: [ParseData] = [ParseData]()
     var flag: Bool? = false
     var sessionID: String? = nil
     

@@ -20,7 +20,10 @@ class ParseClient: NSObject {
     //MARK: GET
      func taskForGETMethod(method: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         /* 1. Build the URL, Configure the Request */
-        let request = NSMutableURLRequest(URL: parseURLFromParameters(method))
+        let methodParameters: [String: String] = [
+            ParseClient.JSONParameterKeys.Order:ParseClient.JSONResponseKeys.UpdatedAt
+        ]
+        let request = NSMutableURLRequest(URL: parseURLFromParameters(methodParameters, withPathExtension: method))
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
@@ -58,7 +61,7 @@ class ParseClient: NSObject {
     
     //MARK: POST
      func taskForPOSTMethod(method: String, jsonData: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: parseURLFromParameters(method))
+        let request = NSMutableURLRequest(URL: parseURLFromParameters([:],withPathExtension: method))
         request.HTTPMethod = "POST"
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
@@ -97,7 +100,7 @@ class ParseClient: NSObject {
     
     //MARK: PUT
     func taskForPUTMethod(method: String, jsonData: String, completionHandlerForPUT: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: parseURLFromParameters(method))
+        let request = NSMutableURLRequest(URL: parseURLFromParameters([:],withPathExtension: method))
         request.HTTPMethod = "PUT"
         request.addValue(ParseClient.Constants.ApplicationID, forHTTPHeaderField: ParseClient.HTTPHeaderFields.ApplicationID)
         request.addValue(ParseClient.Constants.RESTAPIKey, forHTTPHeaderField: ParseClient.HTTPHeaderFields.RESTAPIKey)
@@ -148,12 +151,16 @@ class ParseClient: NSObject {
     }
     
     //Create a URL from Parameters
-    func parseURLFromParameters(withPathExtension: String? = nil) -> NSURL {
+    func parseURLFromParameters(parameters: [String: AnyObject], withPathExtension: String? = nil) -> NSURL {
         let components = NSURLComponents()
         components.scheme = ParseClient.Constants.ApiScheme
         components.host = ParseClient.Constants.ApiHost
         components.path = ParseClient.Constants.ApiPath + (withPathExtension ?? "")
         components.queryItems = [NSURLQueryItem]()
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
         return components.URL!
     }
     

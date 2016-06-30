@@ -16,8 +16,6 @@ func getParseData(completionHandlerForParseData: (result: [ParseData]?, error: N
 
     /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
     let method = ParseClient.Methods.StudentLocation
-
-    
     taskForGETMethod(method) { (result, error) in
         /* 3. Send the desired value(s) to completion handler */
         if let error = error {
