@@ -8,13 +8,19 @@
 
 import UIKit
 
-class LoginViewController: UIViewController
+class LoginViewController: UIViewController, UITextFieldDelegate
 {
     
     let instance = AppDelegate.sharedInstance()
     
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    
+    override func viewDidLoad() {
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
     @IBAction func loginPressed(sender: AnyObject) {
         userDidTapView(self)
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
@@ -75,6 +81,11 @@ class LoginViewController: UIViewController
         if textField.isFirstResponder() {
             textField.resignFirstResponder()
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     private func setUIEnabled(enabled: Bool) {

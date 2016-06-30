@@ -3,7 +3,21 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Map-->
         <scene sceneID="4dN-Ja-Qwd">
@@ -103,34 +117,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4x-ru-hUd">
-                                <rect key="frame" x="141" y="269" width="38" height="30"/>
-                                <state key="normal" title="Login"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App Background" translatesAutoresizingMaskIntoConstraints="NO" id="BUw-WA-Xb2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4x-ru-hUd">
+                                <rect key="frame" x="16" y="317" width="288" height="35"/>
+                                <color key="backgroundColor" red="0.9184895833333333" green="0.13780030519650058" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="loginPressed:" destination="4AR-Xo-EzW" eventType="touchUpInside" id="8GG-H8-eS2"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zet-QA-EUD">
-                                <rect key="frame" x="112" y="109" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="WsT-fo-Onn">
+                                <rect key="frame" x="16" y="232" width="288" height="35"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WsT-fo-Onn" secondAttribute="height" multiplier="374:45" id="Ga3-ka-3gz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WsT-fo-Onn">
-                                <rect key="frame" x="112" y="174" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity Logo" translatesAutoresizingMaskIntoConstraints="NO" id="rZO-SV-dpD">
+                                <rect key="frame" x="103" y="48" width="114" height="114"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rZO-SV-dpD" secondAttribute="height" multiplier="1:1" id="87J-y0-2tL"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D6-8s-cGK">
+                                <rect key="frame" x="16" y="193" width="288" height="20"/>
+                                <rect key="contentStretch" x="0.20000000000000001" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="-2"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? Sign Up" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FV9-97-viP">
+                                <rect key="frame" x="59" y="369" width="202" height="40"/>
+                                <rect key="contentStretch" x="0.20000000000000001" y="0.0" width="1" height="1"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="-2"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zet-QA-EUD">
+                                <rect key="frame" x="16" y="275" width="288" height="34"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="BUw-WA-Xb2" firstAttribute="leading" secondItem="Blp-BT-8ZO" secondAttribute="leading" id="36D-fZ-NRk"/>
+                            <constraint firstAttribute="bottom" secondItem="BUw-WA-Xb2" secondAttribute="bottom" id="60y-23-dwZ"/>
+                            <constraint firstItem="WsT-fo-Onn" firstAttribute="top" secondItem="1D6-8s-cGK" secondAttribute="bottom" constant="19" id="7o2-Vw-axw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FV9-97-viP" secondAttribute="trailing" constant="43" id="AgS-le-LeW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rZO-SV-dpD" secondAttribute="trailing" constant="87" id="BjV-ek-5UN"/>
+                            <constraint firstItem="BUw-WA-Xb2" firstAttribute="top" secondItem="Blp-BT-8ZO" secondAttribute="top" id="DnJ-aF-IQl"/>
+                            <constraint firstItem="Zet-QA-EUD" firstAttribute="leading" secondItem="Blp-BT-8ZO" secondAttribute="leadingMargin" id="GIy-Hk-v9A"/>
+                            <constraint firstItem="1D6-8s-cGK" firstAttribute="trailing" secondItem="Blp-BT-8ZO" secondAttribute="trailingMargin" id="GUd-DD-s1r"/>
+                            <constraint firstItem="Zet-QA-EUD" firstAttribute="height" secondItem="WsT-fo-Onn" secondAttribute="height" id="H85-eI-Av2"/>
+                            <constraint firstItem="FV9-97-viP" firstAttribute="leading" secondItem="Blp-BT-8ZO" secondAttribute="leadingMargin" constant="43" id="IBB-R7-1R5"/>
+                            <constraint firstItem="FV9-97-viP" firstAttribute="top" secondItem="k4x-ru-hUd" secondAttribute="bottom" constant="17" id="J4m-3Z-ygk"/>
+                            <constraint firstItem="rZO-SV-dpD" firstAttribute="top" secondItem="bcy-HF-ny2" secondAttribute="bottom" constant="28" id="Pz1-YC-Dei"/>
+                            <constraint firstItem="k4x-ru-hUd" firstAttribute="height" secondItem="Zet-QA-EUD" secondAttribute="height" id="UO7-C3-9C7"/>
+                            <constraint firstItem="rZO-SV-dpD" firstAttribute="leading" secondItem="Blp-BT-8ZO" secondAttribute="leadingMargin" constant="87" id="W1s-4J-0Fj"/>
+                            <constraint firstItem="WsT-fo-Onn" firstAttribute="leading" secondItem="Blp-BT-8ZO" secondAttribute="leadingMargin" id="WXI-gz-pix"/>
+                            <constraint firstItem="k4x-ru-hUd" firstAttribute="leading" secondItem="Blp-BT-8ZO" secondAttribute="leadingMargin" id="Yjw-bU-qAl"/>
+                            <constraint firstAttribute="trailing" secondItem="BUw-WA-Xb2" secondAttribute="trailing" id="Zim-hc-IiG"/>
+                            <constraint firstItem="Zet-QA-EUD" firstAttribute="trailing" secondItem="Blp-BT-8ZO" secondAttribute="trailingMargin" id="ku4-1Y-xKV"/>
+                            <constraint firstItem="WsT-fo-Onn" firstAttribute="trailing" secondItem="Blp-BT-8ZO" secondAttribute="trailingMargin" id="n87-eb-ztU"/>
+                            <constraint firstItem="1D6-8s-cGK" firstAttribute="centerX" secondItem="rZO-SV-dpD" secondAttribute="centerX" id="wKT-Sa-iOr"/>
+                            <constraint firstItem="1D6-8s-cGK" firstAttribute="top" secondItem="rZO-SV-dpD" secondAttribute="bottom" constant="31" id="wto-G9-h4Y"/>
+                            <constraint firstItem="k4x-ru-hUd" firstAttribute="trailing" secondItem="Blp-BT-8ZO" secondAttribute="trailingMargin" id="xL6-hm-Mtb"/>
+                            <constraint firstItem="1D6-8s-cGK" firstAttribute="leading" secondItem="Blp-BT-8ZO" secondAttribute="leadingMargin" id="xLh-79-JW3"/>
+                            <constraint firstItem="k4x-ru-hUd" firstAttribute="top" secondItem="Zet-QA-EUD" secondAttribute="bottom" constant="8" id="xqc-fN-Hy9"/>
+                            <constraint firstItem="Zet-QA-EUD" firstAttribute="top" secondItem="WsT-fo-Onn" secondAttribute="bottom" constant="8" id="znn-PX-R1m"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="oNv-QN-wKB" appends="YES" id="R8u-qK-OCb"/>
                         </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="passwordTextField" destination="WsT-fo-Onn" id="BaH-e5-80d"/>
-                        <outlet property="usernameTextField" destination="Zet-QA-EUD" id="0HV-b2-bZQ"/>
+                        <outlet property="passwordTextField" destination="Zet-QA-EUD" id="1ML-tS-q7H"/>
+                        <outlet property="usernameTextField" destination="WsT-fo-Onn" id="O8P-f3-Pdx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVG-bl-qSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,14 +230,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PoA-Dn-p3I">
-                                <rect key="frame" x="112" y="169" width="97" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App Background" translatesAutoresizingMaskIntoConstraints="NO" id="fjI-YR-4zZ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PoA-Dn-p3I">
+                                <rect key="frame" x="16" y="266" width="288" height="36"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PoA-Dn-p3I" secondAttribute="height" multiplier="187:24" id="mXE-aR-uLl"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNP-A7-n5B">
-                                <rect key="frame" x="137" y="231" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3L-ku-ctp">
+                                <rect key="frame" x="16" y="231" width="288" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNP-A7-n5B">
+                                <rect key="frame" x="79" y="315" width="162" height="30"/>
+                                <color key="backgroundColor" red="0.91848958329999997" green="0.1378003052" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="Find on the Map">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="getLocation:" destination="aZ7-K1-32w" eventType="touchUpInside" id="V6d-lS-yTv"/>
                                     <segue destination="FfD-bO-tsD" kind="show" id="0Fn-Hf-pNC"/>
@@ -169,6 +262,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PoA-Dn-p3I" firstAttribute="trailing" secondItem="7XE-a8-UwB" secondAttribute="trailingMargin" id="60e-8R-LwZ"/>
+                            <constraint firstItem="PoA-Dn-p3I" firstAttribute="centerX" secondItem="7XE-a8-UwB" secondAttribute="centerX" id="D5t-oR-I9N"/>
+                            <constraint firstItem="fjI-YR-4zZ" firstAttribute="leading" secondItem="7XE-a8-UwB" secondAttribute="leading" id="OLg-YO-6Vd"/>
+                            <constraint firstItem="PoA-Dn-p3I" firstAttribute="leading" secondItem="7XE-a8-UwB" secondAttribute="leadingMargin" id="PRf-XA-Lu6"/>
+                            <constraint firstItem="PoA-Dn-p3I" firstAttribute="centerY" secondItem="7XE-a8-UwB" secondAttribute="centerY" id="VDO-PA-QA6"/>
+                            <constraint firstItem="uNP-A7-n5B" firstAttribute="leading" secondItem="7XE-a8-UwB" secondAttribute="leadingMargin" constant="63" id="XyW-HC-RCR"/>
+                            <constraint firstAttribute="trailing" secondItem="fjI-YR-4zZ" secondAttribute="trailing" id="Y5V-6V-LWL"/>
+                            <constraint firstItem="fjI-YR-4zZ" firstAttribute="top" secondItem="7XE-a8-UwB" secondAttribute="top" id="ZZI-YN-o4F"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uNP-A7-n5B" secondAttribute="trailing" constant="63" id="afe-Z5-PyZ"/>
+                            <constraint firstAttribute="bottom" secondItem="fjI-YR-4zZ" secondAttribute="bottom" id="d4F-dG-1wj"/>
+                            <constraint firstItem="j3L-ku-ctp" firstAttribute="trailing" secondItem="7XE-a8-UwB" secondAttribute="trailingMargin" id="dFE-8x-qBv"/>
+                            <constraint firstItem="j3L-ku-ctp" firstAttribute="leading" secondItem="7XE-a8-UwB" secondAttribute="leadingMargin" id="g13-yx-QJ5"/>
+                            <constraint firstItem="uNP-A7-n5B" firstAttribute="top" secondItem="PoA-Dn-p3I" secondAttribute="bottom" constant="13" id="gel-nd-jt0"/>
+                            <constraint firstItem="PoA-Dn-p3I" firstAttribute="top" secondItem="j3L-ku-ctp" secondAttribute="bottom" constant="15" id="kBc-hg-kl2"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -191,13 +300,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uaf-Sx-gid">
-                                <rect key="frame" x="112" y="172" width="97" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="App Background" translatesAutoresizingMaskIntoConstraints="NO" id="wYJ-04-tkG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uaf-Sx-gid">
+                                <rect key="frame" x="16" y="266" width="288" height="36"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOg-qX-tfR">
+                                <rect key="frame" x="16" y="231" width="288" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6K2-Xx-vtc">
-                                <rect key="frame" x="131" y="243" width="46" height="30"/>
+                                <rect key="frame" x="137" y="310" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="updateParseData:" destination="FfD-bO-tsD" eventType="touchUpInside" id="K1h-Me-h0j"/>
@@ -247,8 +366,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="list" width="32" height="32"/>
-        <image name="map" width="32" height="32"/>
-        <image name="pin" width="32" height="32"/>
+        <image name="App Background" width="375" height="667"/>
+        <image name="Udacity Logo" width="183" height="188"/>
+        <image name="list" width="22" height="20"/>
+        <image name="map" width="26" height="20"/>
+        <image name="pin" width="15" height="22"/>
     </resources>
 </document>
