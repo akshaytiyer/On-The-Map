@@ -10,6 +10,7 @@ import UIKit
 
 class MapTabBarController: UITabBarController {
     
+    //MARK: Update the user location button
     @IBAction func updateUdacityUserLocation(sender: AnyObject) {
         if AppDelegate.sharedInstance().flag! == true {
             let alertController = UIAlertController(title: "Warning", message: "You have already posted your student location, would you like to override that student location", preferredStyle: .Alert)
@@ -30,6 +31,7 @@ class MapTabBarController: UITabBarController {
         }
     }
     
+    //MARK: The logout button
     @IBAction func logoutButton(sender: AnyObject) {
         UdacityClient.sharedInstance().deleteUdacityUserData { (success, errorString) in
             if success {
@@ -38,6 +40,7 @@ class MapTabBarController: UITabBarController {
         }
     }
     
+    //MARK: Login Button
     private func completeLogout() {
         performUIUpdatesOnMain {
             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController

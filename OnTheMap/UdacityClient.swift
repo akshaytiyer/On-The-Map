@@ -13,8 +13,8 @@ class UdacityClient: NSObject {
     let instance = AppDelegate.sharedInstance()
     
     //MARK: GET
-    func taskForGETMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
+    func taskForGETMethod(method: String, jsonData: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: udacityURLFromParameters(method))
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             
             func sendError(error: String) {
@@ -51,7 +51,7 @@ class UdacityClient: NSObject {
     func taskForPOSTMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         let username = parameters["Username"] as? String!
         let password = parameters["Password"] as? String!
-        let request = NSMutableURLRequest(URL: udacityURLFromParameters([:], withPathExtension: method))
+        let request = NSMutableURLRequest(URL: udacityURLFromParameters(method))
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -89,8 +89,8 @@ class UdacityClient: NSObject {
     }
     
     //MARK: Delete
-    func taskForDELETEMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForDELETE: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: udacityURLFromParameters(parameters, withPathExtension: method))
+    func taskForDELETEMethod(method: String, jsonData: String, completionHandlerForDELETE: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: udacityURLFromParameters(method))
         request.HTTPMethod = "DELETE"
         var xsrfCookie: NSHTTPCookie? = nil
         let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
@@ -144,16 +144,11 @@ class UdacityClient: NSObject {
         completionHandlerForConvertData(result: parsedResult, error: nil)
     }
     
-    func udacityURLFromParameters(parameters:[String: AnyObject],withPathExtension: String? = nil) -> NSURL {
+    func udacityURLFromParameters(withPathExtension: String? = nil) -> NSURL {
         let components = NSURLComponents()
         components.scheme = UdacityClient.Constants.ApiScheme
         components.host = UdacityClient.Constants.ApiHost
         components.path = UdacityClient.Constants.ApiPath + (withPathExtension ?? "")
-        components.queryItems = [NSURLQueryItem]()
-        for (key, value) in parameters {
-            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
-            components.queryItems!.append(queryItem)
-        }
         return components.URL!
     }
     

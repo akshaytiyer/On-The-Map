@@ -18,7 +18,7 @@ func getParseData(completionHandlerForParseData: (result: [ParseData]?, error: N
     let method = ParseClient.Methods.StudentLocation
 
     
-    taskForGETMethod(method, parameters: [:]) { (result, error) in
+    taskForGETMethod(method) { (result, error) in
         /* 3. Send the desired value(s) to completion handler */
         if let error = error {
             completionHandlerForParseData(result: nil, error: error)
@@ -40,7 +40,7 @@ func updateParseData(flag: Bool!, jsonData: String, completionHandlerForParseDat
     
     if flag == false
     {
-        taskForPOSTMethod(method, parameters: [:], jsonData: jsonData) { (result, error) in
+        taskForPOSTMethod(method, jsonData: jsonData) { (result, error) in
             if let error = error {
                 completionHandlerForParseData(success: false, error: error)
             } else {
@@ -52,7 +52,7 @@ func updateParseData(flag: Bool!, jsonData: String, completionHandlerForParseDat
     else
     {
         let updatedMethod = "\(method)/\(AppDelegate.sharedInstance().parse.objectID)"
-        taskForPUTMethod(updatedMethod, parameters: [:], jsonData: jsonData) { (result, error) in
+        taskForPUTMethod(updatedMethod, jsonData: jsonData) { (result, error) in
             if let error = error {
                 completionHandlerForParseData(success: false, error: error)
             } else {

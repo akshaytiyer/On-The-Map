@@ -16,6 +16,7 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -233,21 +234,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App Background" translatesAutoresizingMaskIntoConstraints="NO" id="fjI-YR-4zZ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PoA-Dn-p3I">
-                                <rect key="frame" x="16" y="266" width="288" height="36"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="PoA-Dn-p3I" secondAttribute="height" multiplier="187:24" id="mXE-aR-uLl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3L-ku-ctp">
-                                <rect key="frame" x="16" y="231" width="288" height="20"/>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNP-A7-n5B">
                                 <rect key="frame" x="79" y="315" width="162" height="30"/>
                                 <color key="backgroundColor" red="0.91848958329999997" green="0.1378003052" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -257,9 +243,23 @@
                                 </state>
                                 <connections>
                                     <action selector="getLocation:" destination="aZ7-K1-32w" eventType="touchUpInside" id="V6d-lS-yTv"/>
-                                    <segue destination="FfD-bO-tsD" kind="show" id="0Fn-Hf-pNC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3L-ku-ctp">
+                                <rect key="frame" x="16" y="231" width="288" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PoA-Dn-p3I">
+                                <rect key="frame" x="16" y="266" width="288" height="36"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PoA-Dn-p3I" secondAttribute="height" multiplier="187:24" id="mXE-aR-uLl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -288,10 +288,10 @@
             </objects>
             <point key="canvasLocation" x="-210" y="-421"/>
         </scene>
-        <!--Map Media URL Controller-->
+        <!--MapMediaURLController-->
         <scene sceneID="n7A-BH-cy1">
             <objects>
-                <viewController id="FfD-bO-tsD" customClass="MapMediaURLController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapMediaURLController" title="MapMediaURLController" id="FfD-bO-tsD" customClass="MapMediaURLController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xwh-f9-0ND"/>
                         <viewControllerLayoutGuide type="bottom" id="D7s-s9-gJW"/>
@@ -300,33 +300,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="App Background" translatesAutoresizingMaskIntoConstraints="NO" id="wYJ-04-tkG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App Background" translatesAutoresizingMaskIntoConstraints="NO" id="wYJ-04-tkG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uaf-Sx-gid">
-                                <rect key="frame" x="16" y="266" width="288" height="36"/>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uaf-Sx-gid">
+                                <rect key="frame" x="16" y="133" width="288" height="36"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="RxI-5G-42j"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Where are you studying today?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOg-qX-tfR">
-                                <rect key="frame" x="16" y="231" width="288" height="20"/>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6K2-Xx-vtc">
-                                <rect key="frame" x="137" y="310" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6K2-Xx-vtc">
+                                <rect key="frame" x="75" y="182" width="170" height="30"/>
+                                <color key="backgroundColor" red="0.91848958329999997" green="0.1378003052" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="updateParseData:" destination="FfD-bO-tsD" eventType="touchUpInside" id="K1h-Me-h0j"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a link to share" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOg-qX-tfR">
+                                <rect key="frame" x="12" y="98" width="296" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aXg-Vi-WG5">
+                                <rect key="frame" x="0.0" y="239" width="320" height="329"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wYJ-04-tkG" firstAttribute="leading" secondItem="ewf-3R-Na7" secondAttribute="leading" id="DC6-oI-m5C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6K2-Xx-vtc" secondAttribute="trailing" constant="59" id="EK2-ul-NPx"/>
+                            <constraint firstItem="uaf-Sx-gid" firstAttribute="leading" secondItem="ewf-3R-Na7" secondAttribute="leadingMargin" id="FhE-vV-Fg8"/>
+                            <constraint firstItem="wYJ-04-tkG" firstAttribute="top" secondItem="ewf-3R-Na7" secondAttribute="top" id="HxD-JV-xBU"/>
+                            <constraint firstAttribute="trailing" secondItem="wYJ-04-tkG" secondAttribute="trailing" id="IPN-BY-B6z"/>
+                            <constraint firstItem="uaf-Sx-gid" firstAttribute="centerX" secondItem="uOg-qX-tfR" secondAttribute="centerX" id="JbR-tx-JXr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uOg-qX-tfR" secondAttribute="trailing" constant="-4" id="Peg-0h-hW2"/>
+                            <constraint firstItem="uaf-Sx-gid" firstAttribute="top" secondItem="ewf-3R-Na7" secondAttribute="top" constant="133" id="c7u-05-5Tm"/>
+                            <constraint firstItem="6K2-Xx-vtc" firstAttribute="top" secondItem="uaf-Sx-gid" secondAttribute="bottom" constant="13" id="cFF-vY-rXT"/>
+                            <constraint firstAttribute="bottom" secondItem="wYJ-04-tkG" secondAttribute="bottom" constant="329" id="dJH-Js-mEf"/>
+                            <constraint firstItem="uaf-Sx-gid" firstAttribute="top" secondItem="uOg-qX-tfR" secondAttribute="bottom" constant="15" id="pLh-hw-VFm"/>
+                            <constraint firstItem="uOg-qX-tfR" firstAttribute="leading" secondItem="ewf-3R-Na7" secondAttribute="leadingMargin" constant="-4" id="peD-o8-fkz"/>
+                            <constraint firstItem="6K2-Xx-vtc" firstAttribute="leading" secondItem="ewf-3R-Na7" secondAttribute="leadingMargin" constant="59" id="q33-QU-eBw"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="mapView" destination="aXg-Vi-WG5" id="d6c-kH-lOr"/>
                         <outlet property="mediaURLTextField" destination="uaf-Sx-gid" id="NWt-Ej-6rk"/>
                     </connections>
                 </viewController>

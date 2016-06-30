@@ -11,9 +11,9 @@ import UIKit
 class MapTableViewController: UITableViewController
 {
     //MARK: Properties
-    
     var parseData: [ParseData] = [ParseData]()
     
+    //MARK: Outlets
     @IBOutlet var parseTableView: UITableView!
     
     override func viewDidLoad() {
@@ -35,6 +35,7 @@ class MapTableViewController: UITableViewController
         }
     }
     
+    //MARK: UITableViewDelegate Methods
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return parseData.count
     }
@@ -43,7 +44,7 @@ class MapTableViewController: UITableViewController
         let cell = tableView.dequeueReusableCellWithIdentifier("ParseTableViewCell", forIndexPath: indexPath)
         let data = parseData[indexPath.row]
         cell.textLabel?.text = "\(data.firstName) \(data.lastName)"
-        cell.imageView?.image = UIImage(named: "map")
+        cell.imageView?.image = UIImage(named: "pin")
         return cell
     }
     

@@ -33,6 +33,7 @@ struct ParseData {
         objectID = dictionary[ParseClient.JSONResponseKeys.ObjectID] as! String
     }
     
+    //MARK: Helper Method
     static func parseDataFromResults(results: [[String: AnyObject]]) -> [ParseData]
     {
         var parse = [ParseData]()
@@ -51,7 +52,7 @@ struct ParseData {
     }
 }
 
-// MARK: - TMDBMovie: Equatable
+// MARK: - ParseData: Equatable
 
 extension ParseData: Equatable {}
 

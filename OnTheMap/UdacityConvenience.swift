@@ -12,6 +12,8 @@ import Foundation
 extension UdacityClient {
     
     
+    //MARK: Main method to authenticate user
+    
     func authenticateWithViewController(hostViewController: UIViewController, loginParameters: [String: String!] ,completionHandlerForAuth: (success: Bool, errorString: String?) -> Void) {
 
     getUniqueID(loginParameters) { (success, uniqueID, sessionID, errorString) in
@@ -24,6 +26,8 @@ extension UdacityClient {
             }
         }
     }
+    
+    //MARK: Get Session ID
     
     private func getUniqueID(loginParameters: [String: String!],completionHandlerForUniqueID: (success: Bool, uniqueID: String!,sessionID: String!, errorString: String!) -> Void) {
         
@@ -48,9 +52,11 @@ extension UdacityClient {
         }
     }
     
+    //MARK: Get User Details
+    
     func getUdacityUserData(uniqueID: String!, completionHandlerForUserData: (success: Bool, result: [String: AnyObject!]!, errorString: String!) -> Void) {
         let uniqueKeyMethod = "\(UdacityClient.Methods.Users)/\(uniqueID)"
-        taskForGETMethod(uniqueKeyMethod, parameters: [:], jsonData: "") { (result, error) in
+        taskForGETMethod(uniqueKeyMethod, jsonData: "") { (result, error) in
             if let error = error {
                 completionHandlerForUserData(success: false, result: nil, errorString: "Did not fetch data correctly \(error)")
             }
@@ -66,8 +72,10 @@ extension UdacityClient {
    
     }
     
+    //MARK: Log Out
+    
     func deleteUdacityUserData(completionHandlerForUserData: (success: Bool, errorString: String!) -> Void) {
-        taskForDELETEMethod(UdacityClient.Methods.Session, parameters: [:], jsonData: "") { (result, error) in
+        taskForDELETEMethod(UdacityClient.Methods.Session, jsonData: "") { (result, error) in
             if let error = error {
                 completionHandlerForUserData(success: false, errorString: "Did not fetch data correctly \(error)")
             }

@@ -10,17 +10,20 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
-    
+    //MARK: Properites
     let instance = AppDelegate.sharedInstance()
     
+    //MARK: Outets
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    
     
     override func viewDidLoad() {
         usernameTextField.delegate = self
         passwordTextField.delegate = self
     }
     
+    //MARK: Click of login button
     @IBAction func loginPressed(sender: AnyObject) {
         userDidTapView(self)
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
@@ -43,6 +46,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         }
     }
     
+    //MARK: Login invalid alert box
     private func invalidLogin() {
         performUIUpdatesOnMain {
             let alertController = UIAlertController(title: "Invalid Login", message: "Please Enter Your Correct Login Details", preferredStyle: .Alert)
@@ -57,6 +61,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         }
     }
     
+    //MARK: Login Successful
     private func completeLogin() {
         UdacityClient.sharedInstance().getUdacityUserData(self.instance.udacityData.uniqueKey) { (success, result, errorString) in
             if success
@@ -72,6 +77,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         }
     }
     
+    //MARK: Helper methods
     @IBAction func userDidTapView(sender: AnyObject) {
         resignIfFirstResponder(usernameTextField)
         resignIfFirstResponder(passwordTextField)

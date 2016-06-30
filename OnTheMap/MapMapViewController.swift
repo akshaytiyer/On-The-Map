@@ -11,9 +11,12 @@ import MapKit
 
 class MapMapViewController: UIViewController, MKMapViewDelegate
 {
-    @IBOutlet var parseMapView: MKMapView!
+    //MARK: Properties
     var parseData: [ParseData] = [ParseData]()
     var annotations = [MKPointAnnotation]()
+    
+    //MARK: Methods
+    @IBOutlet var parseMapView: MKMapView!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -61,7 +64,6 @@ class MapMapViewController: UIViewController, MKMapViewDelegate
         
         return pinView
     }
-    
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {

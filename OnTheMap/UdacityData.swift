@@ -7,6 +7,8 @@
 //
 
 struct UdacityData {
+    
+    //MARK: Properties
     var uniqueKey: String!
     var firstName: String!
     var lastName: String!
