@@ -33,17 +33,17 @@ extension UdacityClient {
         
         taskForPOSTMethod(UdacityClient.Methods.Session, parameters: loginParameters, jsonData: "") { (result, error) in
             if let error = error {
-                completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error.localizedDescription)")
+                completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error)")
             } else {
                 guard let account = result[UdacityClient.JSONParameterKeys.Account] as? [String: AnyObject!],
                 let results = account[UdacityClient.JSONParameterKeys.Key] as? String else {
-                   completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error!.localizedDescription)")
+                   completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error!)")
                     return
                 }
                 
                 guard let session = result[UdacityClient.JSONParameterKeys.Session] as? [String: AnyObject!],
                     let id = session[UdacityClient.JSONParameterKeys.SessionID] as? String else {
-                        completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error!.localizedDescription)")
+                        completionHandlerForUniqueID(success: false, uniqueID: nil, sessionID: nil, errorString: "Did not fetch data correctly \(error)")
                         return
                 }
                 

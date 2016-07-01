@@ -45,7 +45,7 @@ class MapMediaURLController: UIViewController, MKMapViewDelegate, UITextFieldDel
                        self.returnToHome()
                     }
                     else {
-                        self.cancelAlertBox()
+                        self.cancelAlertBox(error)
                     }
                 })
             }
@@ -99,9 +99,9 @@ class MapMediaURLController: UIViewController, MKMapViewDelegate, UITextFieldDel
     }
     
     //MARK: Cancel Function
-    private func cancelAlertBox()
+    private func cancelAlertBox(error: String!)
     {
-        let alertController = UIAlertController(title: "Error", message: "Could not find location", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .Alert)
         let CancelAction = UIAlertAction(title: "Return", style: .Default) { (action) in
             alertController.dismissViewControllerAnimated(true, completion: nil)
         }

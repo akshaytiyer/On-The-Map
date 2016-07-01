@@ -13,19 +13,18 @@ class UdacityClient: NSObject {
     let instance = AppDelegate.sharedInstance()
     
     //MARK: GET
-    func taskForGETMethod(method: String, jsonData: String, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod(method: String, jsonData: String, completionHandlerForGET: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
         let request = NSMutableURLRequest(URL: udacityURLFromParameters(method))
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             
             func sendError(error: String) {
                 print(error)
-                let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForGET(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandlerForGET(result: nil, error: error)
             }
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError(error!.localizedDescription)
                 return
             }
             
@@ -48,7 +47,7 @@ class UdacityClient: NSObject {
     }
     
     //MARK: POST
-    func taskForPOSTMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(method: String, parameters: [String: AnyObject], jsonData: String, completionHandlerForPOST: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
         let username = parameters["Username"] as? String!
         let password = parameters["Password"] as? String!
         let request = NSMutableURLRequest(URL: udacityURLFromParameters(method))
@@ -58,14 +57,13 @@ class UdacityClient: NSObject {
         request.HTTPBody = "{\"udacity\": {\"username\": \"\(username!)\", \"password\": \"\(password!)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             func sendError(error: String) {
-                print(error)
-                let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPOSTMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(result: nil, error: error)
             }
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                print()
+                sendError(error!.localizedDescription)
                 return
             }
             
@@ -89,7 +87,7 @@ class UdacityClient: NSObject {
     }
     
     //MARK: Delete
-    func taskForDELETEMethod(method: String, jsonData: String, completionHandlerForDELETE: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForDELETEMethod(method: String, jsonData: String, completionHandlerForDELETE: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
         let request = NSMutableURLRequest(URL: udacityURLFromParameters(method))
         request.HTTPMethod = "DELETE"
         var xsrfCookie: NSHTTPCookie? = nil
@@ -103,13 +101,12 @@ class UdacityClient: NSObject {
         let task = AppDelegate.sharedInstance().session.dataTaskWithRequest(request) { (data, response, error) in
             func sendError(error: String) {
                 print(error)
-                let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForDELETE(result: nil, error: NSError(domain: "taskForDELETEMethod", code: 1, userInfo: userInfo))
+                completionHandlerForDELETE(result: nil, error: error)
             }
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError(error!.localizedDescription)
                 return
             }
             
@@ -132,14 +129,13 @@ class UdacityClient: NSObject {
     }
     
     //MARK: Helper
-    private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
+    private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: String?) -> Void) {
         let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
         var parsedResult: AnyObject!
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
         } catch {
-            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+            completionHandlerForConvertData(result: nil, error: "Could not parse the data as JSON: '\(data)'")
         }
         completionHandlerForConvertData(result: parsedResult, error: nil)
     }

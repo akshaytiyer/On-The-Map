@@ -12,7 +12,7 @@ import Foundation
 extension ParseClient {
 
 
-func getParseData(completionHandlerForParseData: (result: [ParseData]?, error: NSError?) -> Void) {
+func getParseData(completionHandlerForParseData: (result: [ParseData]?, error: String?) -> Void) {
 
     /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
     let method = ParseClient.Methods.StudentLocation
@@ -26,13 +26,13 @@ func getParseData(completionHandlerForParseData: (result: [ParseData]?, error: N
                 completionHandlerForParseData(result: parseData, error: nil)
             }
             else {
-                completionHandlerForParseData(result: nil, error: NSError(domain: "getParseData parsing'", code: 0, userInfo: [NSLocalizedDescriptionKey : "Could nor parse ParseData"]))
+                completionHandlerForParseData(result: nil, error: error)
             }
         }
     }
 }
     
-func updateParseData(flag: Bool!, jsonData: String, completionHandlerForParseData: (success: Bool, error: NSError?) -> Void) {
+func updateParseData(flag: Bool!, jsonData: String, completionHandlerForParseData: (success: Bool, error: String?) -> Void) {
     
     let method = ParseClient.Methods.StudentLocation
     

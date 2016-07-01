@@ -69,7 +69,7 @@ class MapMapViewController: UIViewController, MKMapViewDelegate
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
             if let toOpen = view.annotation?.subtitle! {errorAlertBox()
-                if toOpen == "" {
+                if NSURL(string: toOpen) == nil {
                     self.errorAlertBox()
                 }
                 app.openURL(NSURL(string: toOpen)!)
