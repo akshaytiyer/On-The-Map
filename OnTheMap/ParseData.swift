@@ -9,7 +9,6 @@
 struct ParseData {
     
     //MARK: Properties
-    
     let uniqueKey: String!
     let firstName: String!
     let lastName: String!

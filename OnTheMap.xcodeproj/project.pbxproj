@@ -38,6 +38,7 @@
 		5EA3BD8B1D24BA6F009A778A /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA3BD8A1D24BA6F009A778A /* Roboto-Medium.ttf */; };
 		5EA3BD8C1D24BA6F009A778A /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA3BD8A1D24BA6F009A778A /* Roboto-Medium.ttf */; };
 		5EA3BD8D1D24BA6F009A778A /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EA3BD8A1D24BA6F009A778A /* Roboto-Medium.ttf */; };
+		5EE124611D25F65500265103 /* ParseFetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE124601D25F65500265103 /* ParseFetchedData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		5EA3BD821D24BA39009A778A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		5EA3BD861D24BA40009A778A /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		5EA3BD8A1D24BA6F009A778A /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		5EE124601D25F65500265103 /* ParseFetchedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFetchedData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 				5E2833571D21BC4B000F70B1 /* ParseConstants.swift */,
 				5E28335B1D21BCA5000F70B1 /* ParseClient.swift */,
 				5E2833691D22FAB9000F70B1 /* ParseData.swift */,
+				5EE124601D25F65500265103 /* ParseFetchedData.swift */,
 				5EA3BD6D1D246FE1009A778A /* Parse.swift */,
 			);
 			name = "Parse API";
@@ -407,6 +410,7 @@
 				5E2833761D232784000F70B1 /* UdacityData.swift in Sources */,
 				5E2833241D21B723000F70B1 /* AppDelegate.swift in Sources */,
 				5E2833681D22EC70000F70B1 /* MapLocationViewController.swift in Sources */,
+				5EE124611D25F65500265103 /* ParseFetchedData.swift in Sources */,
 				5E2833701D232365000F70B1 /* LoginViewController.swift in Sources */,
 				5E2833581D21BC4B000F70B1 /* ParseConstants.swift in Sources */,
 			);

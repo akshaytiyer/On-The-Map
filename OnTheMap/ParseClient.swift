@@ -12,7 +12,7 @@ import Foundation
 
 class ParseClient: NSObject {
     
-        var parseData: [ParseData] = [ParseData]()
+    
     
     //MARK: Initializers
     override init() {

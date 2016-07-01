@@ -11,7 +11,7 @@ import UIKit
 class MapTableViewController: UITableViewController
 {
     //MARK: Properties
-    var parseData = ParseClient.sharedInstance().parseData
+    var parseData = ParseFetchedData.sharedInstance().parseData
     
     //MARK: Outlets
     @IBOutlet var parseTableView: UITableView!
@@ -48,7 +48,7 @@ class MapTableViewController: UITableViewController
         let data = parseData[indexPath.row]
         let mediaURL = data.mediaURL
         let app = UIApplication.sharedApplication()
-        if NSURL(string: mediaURL) == nil {
+        if app.canOpenURL(NSURL(string: mediaURL)!) == false {
             self.errorAlertBox()
         }
         else
@@ -59,7 +59,7 @@ class MapTableViewController: UITableViewController
     
     private func errorAlertBox()
     {
-        let alertController = UIAlertController(title: "Error", message: "No URL Available", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Error", message: "Cannot open, no valid URL Available", preferredStyle: .Alert)
         let CancelAction = UIAlertAction(title: "Return", style: .Default) { (action) in
             alertController.dismissViewControllerAnimated(true, completion: nil)
         }

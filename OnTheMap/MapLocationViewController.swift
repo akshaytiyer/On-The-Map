@@ -71,7 +71,9 @@ class MapLocationViewController: UIViewController, UITextFieldDelegate
             alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(CancelAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        performUIUpdatesOnMain {
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     //MARK: UITextFieldDelegate

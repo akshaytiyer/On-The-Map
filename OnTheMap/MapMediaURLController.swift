@@ -27,12 +27,10 @@ class MapMediaURLController: UIViewController, MKMapViewDelegate, UITextFieldDel
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinates
         annotation.title = "\(self.instance.parse.firstName) \(self.instance.parse.lastName)"
-        performUIUpdatesOnMain({
-            let span = MKCoordinateSpanMake(0.05, 0.05)
-            let region = MKCoordinateRegion(center: coordinates, span: span)
-            self.mapView.setRegion(region, animated: true)
-            self.mapView.addAnnotation(annotation)
-        })
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegion(center: coordinates, span: span)
+        self.mapView.setRegion(region, animated: true)
+        self.mapView.addAnnotation(annotation)
     }
     
     //MARK: Update the data available in Parse
@@ -106,7 +104,9 @@ class MapMediaURLController: UIViewController, MKMapViewDelegate, UITextFieldDel
             alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(CancelAction)
+        performUIUpdatesOnMain {
         self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     
